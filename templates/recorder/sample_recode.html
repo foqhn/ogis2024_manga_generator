@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link href="/static/css/style.css" type="text/css" rel="stylesheet" />
+  <title>習慣省年マンガ</title>
+</head>
+
+<body>
+  <div id="loading">
+    <div class="loader"></div>
+  </div>
+  <header><img id="logo" src="/static/img/logo.png" /></header>
+  <main>
+    <div id="name">
+      <div id="ipt">
+        <label for="nameInput">あなたの名前を入力してください</label>
+        <input id="nameInput" type="text" />
+        <button type="button" id="check">次へ</button>
+      </div>
+      <div id="doubleCheck">
+        <p id="checkName"></p>
+        <div id="doubleCheckButtons">
+          <button type="button" id="reenter">入力しなおす</button>
+          <button type="button" id="toRecording">確認しました</button>
+        </div>
+      </div>
+    </div>
+    <div id="record">
+      <p id="direct1">
+        会話における人物と照合するために，5秒間あなたの音声を録音します<br />マイクボタンを押して，録音を開始してください
+      </p>
+      <button id="recBtn" type="button" class="button">
+        <img id="recIcon" src="/static/img/mic.png" />
+      </button>
+      <button type="button" class="button" id="backToName">名前入力へ戻る</button>
+    </div>
+    <br />
+    <div id="afterRecorded">
+      <audio id="audio" src="" controls></audio>
+      <button type="button" id="nextSpeaker">次の話者</button>
+      <p type="hidden">{{id}}</p>
+      <form action="{% url 'recorder:sample_voice' id=id%}" id='form' method="post">
+        {% csrf_token %}
+        <input type="hidden" id="id" name="id" value="{{id}}">
+        <input type="hidden" id="json" name="json" value="">
+        <button type="submit" id="nextBtn">入力終了</button>
+      </form>
+      
+    </div>
+    <p id="direct2"></p>
+    <script src="/static/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/shogo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </main>
+  <footer></footer>
+
+  
+</body>
+
+</html>

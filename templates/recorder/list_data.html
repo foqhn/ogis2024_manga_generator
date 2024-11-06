@@ -1,0 +1,26 @@
+<table>
+    <thead>
+      <tr>
+        <th>Book ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if test_datas %}
+        {% for data in test_datas %}
+          <tr>
+            <td><a href="/test_data/{{data.name}}">{{ data.name }}</a></td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.age }}</td>
+            <td><a href="/books/{{ data.name }}/edit">[Edit]</a></td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan=4>No books.</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
