@@ -1,0 +1,1 @@
+# ogis2024_manga_generator
